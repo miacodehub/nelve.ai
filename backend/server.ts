@@ -9,11 +9,10 @@ app.use(cors());
 app.use(express.json());
 
 const pool = new Pool({
-  user: "mia_nomad",
-  password: "mia_nomad",
-  host: "localhost",
-  port: 5432,
-  database: "mia_nomad_db",
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.DATABASE_URL
+    ? { rejectUnauthorized: false }
+    : undefined,
 });
 
 
